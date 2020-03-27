@@ -118,6 +118,10 @@
       <screen x="0" y="23" width="1440" height="793" />
     </state>
     <state x="162" y="25" key="CommitChangelistDialog2/0.23.1440.793@0.23.1440.793" timestamp="1585306368030" />
+    <state x="152" y="79" key="DiffContextDialog" timestamp="1585306744962">
+      <screen x="0" y="23" width="1440" height="793" />
+    </state>
+    <state x="152" y="79" key="DiffContextDialog/0.23.1440.793@0.23.1440.793" timestamp="1585306744962" />
     <state width="689" height="189" key="GridCell.Tab.0.bottom" timestamp="1585304926964">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
@@ -134,17 +138,25 @@
       <screen x="0" y="23" width="1440" height="793" />
     </state>
     <state width="689" height="189" key="GridCell.Tab.0.right/0.23.1440.793@0.23.1440.793" timestamp="1585304926963" />
+    <state x="152" y="78" key="MergeDialog" timestamp="1585306778489">
+      <screen x="0" y="23" width="1440" height="793" />
+    </state>
+    <state x="152" y="78" key="MergeDialog/0.23.1440.793@0.23.1440.793" timestamp="1585306778489" />
+    <state x="439" y="130" key="MultipleFileMergeDialog" timestamp="1585306778513">
+      <screen x="0" y="23" width="1440" height="793" />
+    </state>
+    <state x="439" y="130" key="MultipleFileMergeDialog/0.23.1440.793@0.23.1440.793" timestamp="1585306778513" />
     <state x="320" y="161" key="Vcs.Push.Dialog.v2" timestamp="1585306389977">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
     <state x="320" y="161" key="Vcs.Push.Dialog.v2/0.23.1440.793@0.23.1440.793" timestamp="1585306389977" />
-    <state x="503" y="344" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585306451772">
+    <state x="503" y="344" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585306808426">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state x="503" y="344" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.793@0.23.1440.793" timestamp="1585306451772" />
-    <state x="381" y="128" key="git4idea.branch.GitSmartOperationDialog" timestamp="1585306428376">
+    <state x="503" y="344" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.793@0.23.1440.793" timestamp="1585306808426" />
+    <state x="381" y="128" key="git4idea.branch.GitSmartOperationDialog" timestamp="1585306758980">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state x="381" y="128" key="git4idea.branch.GitSmartOperationDialog/0.23.1440.793@0.23.1440.793" timestamp="1585306428376" />
+    <state x="381" y="128" key="git4idea.branch.GitSmartOperationDialog/0.23.1440.793@0.23.1440.793" timestamp="1585306758980" />
   </component>
 </project>
