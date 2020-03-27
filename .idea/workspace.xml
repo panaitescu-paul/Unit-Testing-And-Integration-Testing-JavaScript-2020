@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba35dbe2-00d3-4363-84c7-991ae693d6bc" name="Default Changelist" comment="" />
+    <list default="true" id="ba35dbe2-00d3-4363-84c7-991ae693d6bc" name="Default Changelist" comment="t1">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,6 +49,7 @@
       <updated>1585304589368</updated>
       <workItem from="1585304592530" duration="1076000" />
       <workItem from="1585305691051" duration="322000" />
+      <workItem from="1585306160030" duration="253000" />
     </task>
     <task id="LOCAL-00001" summary="git ignore">
       <created>1585305099893</created>
@@ -90,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585305729477</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="t1">
+      <created>1585306357343</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1585306357343</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,13 +110,14 @@
     <MESSAGE value="git ignore" />
     <MESSAGE value="new branch" />
     <MESSAGE value="test 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="test 3" />
+    <MESSAGE value="t1" />
+    <option name="LAST_COMMIT_MESSAGE" value="t1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="162" y="25" key="CommitChangelistDialog2" timestamp="1585305729257">
+    <state x="162" y="25" key="CommitChangelistDialog2" timestamp="1585306368030">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state x="162" y="25" key="CommitChangelistDialog2/0.23.1440.793@0.23.1440.793" timestamp="1585305729257" />
+    <state x="162" y="25" key="CommitChangelistDialog2/0.23.1440.793@0.23.1440.793" timestamp="1585306368030" />
     <state width="689" height="189" key="GridCell.Tab.0.bottom" timestamp="1585304926964">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
@@ -123,13 +134,17 @@
       <screen x="0" y="23" width="1440" height="793" />
     </state>
     <state width="689" height="189" key="GridCell.Tab.0.right/0.23.1440.793@0.23.1440.793" timestamp="1585304926963" />
-    <state x="320" y="161" key="Vcs.Push.Dialog.v2" timestamp="1585306192253">
+    <state x="320" y="161" key="Vcs.Push.Dialog.v2" timestamp="1585306389977">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state x="320" y="161" key="Vcs.Push.Dialog.v2/0.23.1440.793@0.23.1440.793" timestamp="1585306192253" />
-    <state x="503" y="344" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585305709813">
+    <state x="320" y="161" key="Vcs.Push.Dialog.v2/0.23.1440.793@0.23.1440.793" timestamp="1585306389977" />
+    <state x="503" y="344" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585306451772">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
-    <state x="503" y="344" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.793@0.23.1440.793" timestamp="1585305709813" />
+    <state x="503" y="344" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.793@0.23.1440.793" timestamp="1585306451772" />
+    <state x="381" y="128" key="git4idea.branch.GitSmartOperationDialog" timestamp="1585306428376">
+      <screen x="0" y="23" width="1440" height="793" />
+    </state>
+    <state x="381" y="128" key="git4idea.branch.GitSmartOperationDialog/0.23.1440.793@0.23.1440.793" timestamp="1585306428376" />
   </component>
 </project>
