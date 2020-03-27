@@ -11,6 +11,7 @@ const sonyPrice = 900;
 const huaweiPrice = 900;
 
 
+
 document.getElementById("chkInternetConnection").addEventListener("click", ()=> {
     if (isInternetConnection)
         isInternetConnection = false;
