@@ -19,7 +19,7 @@
             <table>
                 <tr>
                     <td>
-                        <select id="cmbCellPhones" size="5">
+                        <select id="cmbCellPhones" size="5" onchange="val()">
                             <option value="moto">Motorola G99</option>
                             <option value="iphone">iPhone 99</option>
                             <option value="samsung">Samsung Galaxy 99</option>
@@ -28,9 +28,9 @@
                         </select>
                     </td>
                     <td>
-                        <input type="button" value="&gt;">
+                        <input type="button" value="&gt;" id="rightBtn">
                         <br>
-                        <input type="button" value="&lt;">
+                        <input type="button" value="&lt;" id="leftBtn">
                     </td>
                     <td>
                         <select id="txtChosenCellPhones" size="5" style="width: 150px">
@@ -39,7 +39,8 @@
                 </tr>
             </table>
             <br>
-            Total price: 0 DKK
+            <p id="price">Total price: 0 DKK</p>
+
             <br>
             <input type="submit" value="Buy">
         </div>
