@@ -197,6 +197,7 @@ document.getElementById("leftBtn").addEventListener("click", ()=> {
             totalPrice = totalPrice - huaweiPrice;
         }
     }
+
     //TODO Buy button functionality
     getTotalPrice();
     console.log("totalPrice: ", totalPrice);
