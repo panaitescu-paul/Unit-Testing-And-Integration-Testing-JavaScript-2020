@@ -31,6 +31,7 @@ let totalPrice = 0;
 let isInternetConnection = false;
 let phoneLines = 0;
 let selectedCellPhones = [];
+let nrOfSelectedCellPhones = [0, 0, 0, 0, 0];
 let sel;
 let text;
 let selChosenCellPhones;
@@ -81,16 +82,11 @@ document.getElementById("chkInternetConnection").addEventListener("click", () =>
     } else {
         isInternetConnection = true;
         totalPrice = totalPrice + internetConnectionPrice;
-        setBuyFlagTrue();
         // adding the internet connection text from HMTL to the selected items array
         selectedItems.push(document.getElementById("internetConnection").textContent);
     }
     console.log("isInternetConnection: ", isInternetConnection);
     console.log("totalPrice: ", totalPrice);
-    // if there are no selected items, set flag to false
-    if(!selectedItems.length) {
-        setBuyFlagFalse();
-    }
     getTotalPrice();
 });
 
@@ -118,9 +114,6 @@ document.getElementById("txtPhoneLines").addEventListener("input",  (e) => {
     totalPrice = totalPrice + phoneLines * phoneLinePrice;
     console.log("totalPrice: ", totalPrice);
     if(phoneLines != 0) {
-        if(!buyFlag) {
-            setBuyFlagTrue();
-        }
         if(phoneLines == 1) {
             let str = (phoneLines + ' ' + document.getElementById("phoneLines").textContent);
             selectedItems.push(str.slice(0, -1));
@@ -134,26 +127,39 @@ document.getElementById("txtPhoneLines").addEventListener("input",  (e) => {
             }
         }
     }
-    // if there are no selected items, set flag to false
-    if(!selectedItems.length) {
-        setBuyFlagFalse();
-    }
     getTotalPrice();
 });
 
 document.getElementById("rightBtn").addEventListener("click", ()=> {
     console.log(sel.value);
-
     if(sel.value === "moto") {
         totalPrice = totalPrice + motorolaPrice;
+        // TODO
+        // increase nr of appearances
+        nrOfSelectedCellPhones[0]++;
+        // search through selected items. if entry not found, push it. if found, increase nr of appearances and modify the text in selected items array
+        for(let i = 0; i < selectedItems.length; i ++) {
+            if(selectedItems[i].indexOf("Motorola") == -1) {
+                selectedItems.push(nrOfSelectedCellPhones[0] + ' x ' + text);
+                console.log(nrOfSelectedCellPhones);
+            } else {
+                selectedItems[i] = nrOfSelectedCellPhones[0] + ' x ' + text;
+                console.log(nrOfSelectedCellPhones);
+                break;
+            }
+        }
     } else if(sel.value === "iphone") {
         totalPrice = totalPrice + iPhonePrice;
+        nrOfSelectedCellPhones[1]++;
     } else if(sel.value === "samsung") {
         totalPrice = totalPrice + samsungPrice;
+        nrOfSelectedCellPhones[2]++;
     } else if(sel.value === "sony") {
         totalPrice = totalPrice + sonyPrice;
+        nrOfSelectedCellPhones[3]++;
     } else if(sel.value === "huawei") {
         totalPrice = totalPrice + huaweiPrice;
+        nrOfSelectedCellPhones[4]++;
     }
     getTotalPrice();
     console.log("totalPrice: ", totalPrice);
@@ -162,34 +168,36 @@ document.getElementById("rightBtn").addEventListener("click", ()=> {
     selectedCellPhones.push(text);
     console.log("selectedCellPhones: ",  selectedCellPhones );
 
-    let select = document.getElementById('txtChosenCellPhones');
-
-    for (let i=0; i < select.length; i++) { // clean the Option elements from HTML
-        if (select.options[i].value)
-            select.remove(i);
-    }
-    for (let i = 0; i < selectedCellPhones.length; i++){ // insert the Option elements in HTML
-        let opt = document.createElement('option');
-        opt.value = selectedCellPhones[i];
-        opt.innerHTML = selectedCellPhones[i];
-        select.appendChild(opt);
-    }
+    // let select = document.getElementById('txtChosenCellPhones');
+    //
+    // for (let i=0; i < select.length; i++) { // clean the Option elements from HTML
+    //     if (select.options[i].value)
+    //         select.remove(i);
+    // }
+    // for (let i = 0; i < selectedCellPhones.length; i++){ // insert the Option elements in HTML
+    //     let opt = document.createElement('option');
+    //     opt.value = selectedCellPhones[i];
+    //     opt.innerHTML = selectedCellPhones[i];
+    //     select.appendChild(opt);
+    //
 });
 
 document.getElementById("leftBtn").addEventListener("click", ()=> {
-    console.log( sel.value );
-
-    if(sel.value === "moto") {
-        totalPrice = totalPrice - motorolaPrice;
-    } else if(sel.value === "iphone") {
-        totalPrice = totalPrice - iPhonePrice;
-    } else if(sel.value === "samsung") {
-        totalPrice = totalPrice - samsungPrice;
-    } else if(sel.value === "sony") {
-        totalPrice = totalPrice - sonyPrice;
-    } else if(sel.value === "huawei") {
-        totalPrice = totalPrice - huaweiPrice;
+    console.log(sel.value);
+    if(totalPrice > 0) {
+        if (sel.value === "moto") {
+            totalPrice = totalPrice - motorolaPrice;
+        } else if (sel.value === "iphone") {
+            totalPrice = totalPrice - iPhonePrice;
+        } else if (sel.value === "samsung") {
+            totalPrice = totalPrice - samsungPrice;
+        } else if (sel.value === "sony") {
+            totalPrice = totalPrice - sonyPrice;
+        } else if (sel.value === "huawei") {
+            totalPrice = totalPrice - huaweiPrice;
+        }
     }
+    //TODO Buy button functionality
     getTotalPrice();
     console.log("totalPrice: ", totalPrice);
 
