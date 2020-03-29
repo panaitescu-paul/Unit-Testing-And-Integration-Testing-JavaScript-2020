@@ -170,33 +170,19 @@ document.getElementById("rightBtn").addEventListener("click", ()=> {
         }
     }
 
-    console.log(sel.value);
-    if(sel.value === "moto") {
+    if(selectedLeftItemName === "Motorola G99") {
         totalPrice = totalPrice + motorolaPrice;
-        // TODO
-        // increase nr of appearances
         nrOfSelectedCellPhones[0]++;
-        // search through selected items. if entry not found, push it. if found, increase nr of appearances and modify the text in selected items array
-        // for(let i = 0; i < selectedItems.length; i ++) {
-        //     if(selectedItems[i].indexOf("Motorola") == -1) {
-        //         selectedItems.push(nrOfSelectedCellPhones[0] + ' x ' + text);
-        //         console.log(nrOfSelectedCellPhones);
-        //     } else {
-        //         selectedItems[i] = nrOfSelectedCellPhones[0] + ' x ' + text;
-        //         console.log(nrOfSelectedCellPhones);
-        //         break;
-        //     }
-        // }
-    } else if(sel.value === "iphone") {
+    } else if(selectedLeftItemName === "iPhone 99") {
         totalPrice = totalPrice + iPhonePrice;
         nrOfSelectedCellPhones[1]++;
-    } else if(sel.value === "samsung") {
+    } else if(selectedLeftItemName === "Samsung Galaxy 99") {
         totalPrice = totalPrice + samsungPrice;
         nrOfSelectedCellPhones[2]++;
-    } else if(sel.value === "sony") {
+    } else if(selectedLeftItemName === "Sony Xperia 99") {
         totalPrice = totalPrice + sonyPrice;
         nrOfSelectedCellPhones[3]++;
-    } else if(sel.value === "huawei") {
+    } else if(selectedLeftItemName === "Huawei 99") {
         totalPrice = totalPrice + huaweiPrice;
         nrOfSelectedCellPhones[4]++;
     }
@@ -213,7 +199,15 @@ document.getElementById("leftBtn").addEventListener("click", ()=> {
         console.log("selectedCellPhones: ",  selectedCellPhones );
         console.log("indexChosenCellPhones: ",  indexChosenCellPhones );
         if (indexChosenCellPhones > -1) {
-            selectedCellPhones.splice(indexChosenCellPhones, 1);
+            selectedCellPhones.splice(indexChosenCellPhones, 1); // delete the selected element
+            //TODO: auto select the upper or lower element
+            // if (indexChosenCellPhones === selectedCellPhones.length - 1) { // Case 1: auto select the upper element
+            //     selectedCellPhones[indexChosenCellPhones-1].selected = true; // select the upper element
+            // } else if (indexChosenCellPhones === 0) { // Case 2: auto select the lower element
+            //     selectedCellPhones[indexChosenCellPhones+1].selected = true; // select the lower element
+            // }
+
+
         }
         console.log("selectedCellPhones-: ",  selectedCellPhones );
         console.log("indexChosenCellPhones: ",  indexChosenCellPhones );
@@ -231,15 +225,15 @@ document.getElementById("leftBtn").addEventListener("click", ()=> {
 
     console.log(sel.value);
     if(totalPrice > 0) {
-        if (sel.value === "Motorola G99") {
+        if (selectedRightItemName === "Motorola G99") {
             totalPrice = totalPrice - motorolaPrice;
-        } else if (sel.value === "iPhone 99") {
+        } else if (selectedRightItemName === "iPhone 99") {
             totalPrice = totalPrice - iPhonePrice;
-        } else if (sel.value === "Samsung Galaxy 99") {
+        } else if (selectedRightItemName === "Samsung Galaxy 99") {
             totalPrice = totalPrice - samsungPrice;
-        } else if (sel.value === "Sony Xperia 99") {
+        } else if (selectedRightItemName === "Sony Xperia 99") {
             totalPrice = totalPrice - sonyPrice;
-        } else if (sel.value === "Huawei 99") {
+        } else if (selectedRightItemName === "Huawei 99") {
             totalPrice = totalPrice - huaweiPrice;
         }
     }
@@ -254,8 +248,6 @@ document.getElementById("buyBtn").addEventListener("click",  () => {
     if(selectedItems.length === 0) {
         alert("Nothing is selected! Please select something");
     } else {
-        ;
-        // alert("You have selected: " + selectedItems);
         alert("You have selected: " + alertMessage());
 
     }
