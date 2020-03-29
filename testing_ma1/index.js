@@ -96,6 +96,7 @@ document.getElementById("txtPhoneLines").addEventListener("input",  (e) => {
     for(let i = 0; i < selectedItems.length; i ++ ) {
         if(selectedItems[i].indexOf("Phone line") !== -1) {
             selectedItems.splice(i, 1);
+            break;
         }
     }
     // reset the total price to 0
@@ -114,10 +115,10 @@ document.getElementById("txtPhoneLines").addEventListener("input",  (e) => {
     // calculate the new total price
     totalPrice = totalPrice + phoneLines * phoneLinePrice;
     console.log("totalPrice: ", totalPrice);
-    // TODO search for optimization
-    if(phoneLines != 0) {
-        if(phoneLines == 1) {
+    if(parseInt(phoneLines) !== 0) {
+        if(parseInt(phoneLines) === 1) {
             let str = (phoneLines + ' ' + document.getElementById("phoneLines").textContent);
+            // delete the last character of the new str ('s' in this case)
             selectedItems.push(str.slice(0, -1));
         } else {
             selectedItems.push(phoneLines + ' ' + document.getElementById("phoneLines").textContent);
