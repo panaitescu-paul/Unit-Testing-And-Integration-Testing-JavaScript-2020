@@ -44,7 +44,7 @@ function getTotalPrice () {
     document.getElementById("price").innerHTML = `Total price: ${totalPrice} DKK`;
 }
 
-function getSelectedLeftItem() {
+function getSelectedLeftItem() { // get the name of the selected option from the Left side, return 0 if no option is selected
     sel = document.getElementById("cmbCellPhones");
     console.log("sel", sel);
     if (sel.options[sel.selectedIndex]) { //if an option is selected
@@ -56,7 +56,7 @@ function getSelectedLeftItem() {
     }
 }
 
-function getSelectedRightItem() {
+function getSelectedRightItem() { // get the name of the selected option from the Right side, return 0 if no option is selected
     sel = document.getElementById("txtChosenCellPhones");
     console.log("sel", sel);
     if (sel.options[sel.selectedIndex]) { //if an option is selected
@@ -142,7 +142,7 @@ document.getElementById("txtPhoneLines").addEventListener("input",  (e) => {
 
 document.getElementById("rightBtn").addEventListener("click", ()=> {
     console.log(" ------------ rightBtn ------------");
-    if (getSelectedLeftItem() == 0) {
+    if (getSelectedLeftItem() == 0) { // if no element is selected
         return 0;
     } else {
         console.log("selectedCellPhones-: ",  selectedCellPhones );
@@ -202,7 +202,7 @@ document.getElementById("rightBtn").addEventListener("click", ()=> {
 
 document.getElementById("leftBtn").addEventListener("click", ()=> {
     console.log(" ------------ leftBtn ------------");
-    if (getSelectedRightItem() == 0) {
+    if (getSelectedRightItem() == 0) { // if no element is selected
         return 0;
     } else {
         console.log("selectedCellPhones: ",  selectedCellPhones );
