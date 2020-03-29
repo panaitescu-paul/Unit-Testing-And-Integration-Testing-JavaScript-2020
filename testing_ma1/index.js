@@ -36,7 +36,6 @@ let sel;
 let selectedLeftItemName;
 let selectedRightItemName;
 let indexChosenCellPhones;
-let buyFlag = false;
 let selectedItems = [];
 let opt;
 
@@ -68,14 +67,6 @@ function getSelectedRightItem() { // get the name of the selected option from th
     } else {
         return 0;
     }
-}
-
-function setBuyFlagFalse() {
-    buyFlag = false;
-}
-
-function setBuyFlagTrue() {
-    buyFlag = true;
 }
 
 document.getElementById("chkInternetConnection").addEventListener("click", () => {
@@ -123,8 +114,9 @@ document.getElementById("txtPhoneLines").addEventListener("input",  (e) => {
     // calculate the new total price
     totalPrice = totalPrice + phoneLines * phoneLinePrice;
     console.log("totalPrice: ", totalPrice);
-    if(phoneLines !== 0) {
-        if(phoneLines === 1) {
+    // TODO search for optimization
+    if(phoneLines != 0) {
+        if(phoneLines == 1) {
             let str = (phoneLines + ' ' + document.getElementById("phoneLines").textContent);
             selectedItems.push(str.slice(0, -1));
         } else {
@@ -246,7 +238,7 @@ document.getElementById("leftBtn").addEventListener("click", ()=> {
 });
 
 document.getElementById("buyBtn").addEventListener("click",  () => {
-    if(buyFlag === false) {
+    if(selectedItems.length === 0) {
         alert("Nothing is selected! Please select something");
     } else {
         alert("You have selected: " + selectedItems);
