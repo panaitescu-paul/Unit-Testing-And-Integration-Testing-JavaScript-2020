@@ -72,7 +72,7 @@ function getSelectedRightItem() { // get the name of the selected option from th
 
 function alertMessage() {
     let message = '';
-    for (let i = 0; i < 7; i++){
+    for (let i = 0; i < receiptQuantity.length; i++){
         if (receiptQuantity[i] > 0) {
             message = message + ' ' + receiptQuantity[i] + 'x ' + receiptNames[i] + '\n';
         }
