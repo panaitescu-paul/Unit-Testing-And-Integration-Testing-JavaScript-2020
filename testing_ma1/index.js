@@ -69,6 +69,18 @@ function getSelectedRightItem() { // get the name of the selected option from th
     }
 }
 
+function alertMessage() {
+    let message = '';
+    for (i = 0; i < selectedItems.length; i++){
+        if (i == 0) {
+            message = selectedItems[i];
+        } else {
+            message = message + ', ' + selectedItems[i];
+        }
+    }
+    return message;
+}
+
 document.getElementById("chkInternetConnection").addEventListener("click", () => {
     if (isInternetConnection) {
         isInternetConnection = false;
@@ -135,11 +147,11 @@ document.getElementById("txtPhoneLines").addEventListener("input",  (e) => {
 
 document.getElementById("rightBtn").addEventListener("click", ()=> {
     console.log(" ------------ rightBtn ------------");
-    if (getSelectedLeftItem() == 0) { // if no element is selected
+    if (getSelectedLeftItem() === 0) { // if no element is selected
         return 0;
     } else {
         console.log("selectedCellPhones-: ",  selectedCellPhones );
-        if (selectedLeftItemName != undefined) {
+        if (selectedLeftItemName !== undefined) {
             selectedCellPhones.push(selectedLeftItemName);
             console.log("selectedCellPhones+: ",  selectedCellPhones );
         }
@@ -195,7 +207,7 @@ document.getElementById("rightBtn").addEventListener("click", ()=> {
 
 document.getElementById("leftBtn").addEventListener("click", ()=> {
     console.log(" ------------ leftBtn ------------");
-    if (getSelectedRightItem() == 0) { // if no element is selected
+    if (getSelectedRightItem() === 0) { // if no element is selected
         return 0;
     } else {
         console.log("selectedCellPhones: ",  selectedCellPhones );
@@ -242,6 +254,9 @@ document.getElementById("buyBtn").addEventListener("click",  () => {
     if(selectedItems.length === 0) {
         alert("Nothing is selected! Please select something");
     } else {
-        alert("You have selected: " + selectedItems);
+        ;
+        // alert("You have selected: " + selectedItems);
+        alert("You have selected: " + alertMessage());
+
     }
 });
