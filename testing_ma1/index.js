@@ -31,7 +31,7 @@ let totalPrice = 0;
 let isInternetConnection = false;
 let phoneLines = 0;
 let selectedCellPhones = [];
-let nrOfSelectedCellPhones = [0, 0, 0, 0, 0];
+let nrOfSelectedCellPhones = [0, 0, 0, 0, 0];  // frequency array
 let sel;
 let selectedLeftItemName;
 let selectedRightItemName;
@@ -78,6 +78,8 @@ function alertMessage() {
             message = message + ', ' + selectedItems[i];
         }
     }
+    message
+    console.log("nrOfSelectedCellPhones: ", nrOfSelectedCellPhones);
     return message;
 }
 
@@ -189,6 +191,8 @@ document.getElementById("rightBtn").addEventListener("click", ()=> {
     getTotalPrice();
     console.log("totalPrice: ", totalPrice);
 
+    console.log("nrOfSelectedCellPhones: ", nrOfSelectedCellPhones);
+
 });
 
 document.getElementById("leftBtn").addEventListener("click", ()=> {
@@ -221,26 +225,36 @@ document.getElementById("leftBtn").addEventListener("click", ()=> {
             opt.innerHTML = selectedCellPhones[i];
             select.appendChild(opt);
         }
+
     }
 
     console.log(sel.value);
     if(totalPrice > 0) {
         if (selectedRightItemName === "Motorola G99") {
             totalPrice = totalPrice - motorolaPrice;
+            nrOfSelectedCellPhones[0]--;
         } else if (selectedRightItemName === "iPhone 99") {
             totalPrice = totalPrice - iPhonePrice;
+            nrOfSelectedCellPhones[1]--;
         } else if (selectedRightItemName === "Samsung Galaxy 99") {
             totalPrice = totalPrice - samsungPrice;
+            nrOfSelectedCellPhones[2]--;
         } else if (selectedRightItemName === "Sony Xperia 99") {
             totalPrice = totalPrice - sonyPrice;
+            nrOfSelectedCellPhones[3]--;
         } else if (selectedRightItemName === "Huawei 99") {
             totalPrice = totalPrice - huaweiPrice;
+            nrOfSelectedCellPhones[4]--;
         }
     }
 
     //TODO Buy button functionality
     getTotalPrice();
     console.log("totalPrice: ", totalPrice);
+    // for (let i = 0; i < nrOfSelectedCellPhones.length; i++){
+    //
+    // }
+    console.log("nrOfSelectedCellPhones: ", nrOfSelectedCellPhones);
 
 });
 
