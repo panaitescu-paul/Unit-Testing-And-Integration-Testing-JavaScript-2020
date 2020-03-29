@@ -34,30 +34,29 @@ let selectedCellPhones = [];
 let nrOfSelectedCellPhones = [0, 0, 0, 0, 0];
 let sel;
 let text;
-let selChosenCellPhones;
-let textChosenCellPhones;
 let indexChosenCellPhones;
 let buyFlag = false;
 let selectedItems = [];
+let opt;
 
 function getTotalPrice () {
     document.getElementById("price").innerHTML = `Total price: ${totalPrice} DKK`;
 }
 
-function val() {
+function getSelectedItemName() {
     sel = document.getElementById("cmbCellPhones");
-    //console.log(sel);
+    console.log("sel", sel);
     text = sel.options[sel.selectedIndex].text;
-    //console.log(text);
+    console.log("text", text);
 }
 
-function valChosenCellPhones() {
-    selChosenCellPhones = document.getElementById("txtChosenCellPhones");
-    console.log(selChosenCellPhones);
-    textChosenCellPhones = sel.options[sel.selectedIndex].text;
+function getSelectedItemId() {
+    sel = document.getElementById("txtChosenCellPhones");
+    console.log("sel", sel);
+    text = sel.options[sel.selectedIndex].text;
     indexChosenCellPhones = sel.selectedIndex;
-    console.log(textChosenCellPhones);
-    console.log(indexChosenCellPhones);
+    console.log("text", text);
+    console.log("indexChosenCellPhones", indexChosenCellPhones);
 }
 
 function setBuyFlagFalse() {
@@ -131,6 +130,7 @@ document.getElementById("txtPhoneLines").addEventListener("input",  (e) => {
 });
 
 document.getElementById("rightBtn").addEventListener("click", ()=> {
+    console.log(" ------------ rightBtn ------------");
     console.log(sel.value);
     if(sel.value === "moto") {
         totalPrice = totalPrice + motorolaPrice;
@@ -138,16 +138,16 @@ document.getElementById("rightBtn").addEventListener("click", ()=> {
         // increase nr of appearances
         nrOfSelectedCellPhones[0]++;
         // search through selected items. if entry not found, push it. if found, increase nr of appearances and modify the text in selected items array
-        for(let i = 0; i < selectedItems.length; i ++) {
-            if(selectedItems[i].indexOf("Motorola") == -1) {
-                selectedItems.push(nrOfSelectedCellPhones[0] + ' x ' + text);
-                console.log(nrOfSelectedCellPhones);
-            } else {
-                selectedItems[i] = nrOfSelectedCellPhones[0] + ' x ' + text;
-                console.log(nrOfSelectedCellPhones);
-                break;
-            }
-        }
+        // for(let i = 0; i < selectedItems.length; i ++) {
+        //     if(selectedItems[i].indexOf("Motorola") == -1) {
+        //         selectedItems.push(nrOfSelectedCellPhones[0] + ' x ' + text);
+        //         console.log(nrOfSelectedCellPhones);
+        //     } else {
+        //         selectedItems[i] = nrOfSelectedCellPhones[0] + ' x ' + text;
+        //         console.log(nrOfSelectedCellPhones);
+        //         break;
+        //     }
+        // }
     } else if(sel.value === "iphone") {
         totalPrice = totalPrice + iPhonePrice;
         nrOfSelectedCellPhones[1]++;
@@ -165,24 +165,27 @@ document.getElementById("rightBtn").addEventListener("click", ()=> {
     console.log("totalPrice: ", totalPrice);
     console.log("text: ", text);
 
-    selectedCellPhones.push(text);
-    console.log("selectedCellPhones: ",  selectedCellPhones );
 
-    // let select = document.getElementById('txtChosenCellPhones');
-    //
-    // for (let i=0; i < select.length; i++) { // clean the Option elements from HTML
-    //     if (select.options[i].value)
-    //         select.remove(i);
-    // }
-    // for (let i = 0; i < selectedCellPhones.length; i++){ // insert the Option elements in HTML
-    //     let opt = document.createElement('option');
-    //     opt.value = selectedCellPhones[i];
-    //     opt.innerHTML = selectedCellPhones[i];
-    //     select.appendChild(opt);
-    //
+    console.log("selectedCellPhones-: ",  selectedCellPhones );
+    selectedCellPhones.push(text);
+    console.log("selectedCellPhones+: ",  selectedCellPhones );
+
+    let select = document.getElementById('txtChosenCellPhones');
+    console.log("select.length: ",  select.length );
+
+    select.textContent = ''; // Delete the content of the Select element from HTML (all the "Option" children)
+    console.log("selectedCellPhones.length: ",  selectedCellPhones.length );
+    for (let i = 0; i < selectedCellPhones.length; i++) { // insert every element of the Array as an Option tag in HTML
+        opt = document.createElement('option');
+        opt.value = selectedCellPhones[i];
+        opt.innerHTML = selectedCellPhones[i];
+        select.appendChild(opt);
+    }
+
 });
 
 document.getElementById("leftBtn").addEventListener("click", ()=> {
+    console.log(" ------------ leftBtn ------------");
     console.log(sel.value);
     if(totalPrice > 0) {
         if (sel.value === "moto") {
@@ -202,21 +205,19 @@ document.getElementById("leftBtn").addEventListener("click", ()=> {
     getTotalPrice();
     console.log("totalPrice: ", totalPrice);
 
+    console.log("selectedCellPhones: ",  selectedCellPhones );
+    console.log("indexChosenCellPhones: ",  indexChosenCellPhones );
     if (indexChosenCellPhones > -1) {
         selectedCellPhones.splice(indexChosenCellPhones, 1);
     }
-
-    console.log("selectedCellPhones: ",  selectedCellPhones );
+    console.log("selectedCellPhones-: ",  selectedCellPhones );
     console.log("indexChosenCellPhones: ",  indexChosenCellPhones );
 
     let select = document.getElementById('txtChosenCellPhones');
 
-    for (let i=0; i < select.length; i++) { // clean the Option elements from HTML
-        if (select.options[i].value)
-            select.remove(i);
-    }
+    select.textContent = ''; // Delete the content of the Select element from HTML (all the "Option" children)
     for (let i = 0; i < selectedCellPhones.length; i++){ // insert the Option elements in HTML
-        let opt = document.createElement('option');
+        opt = document.createElement('option');
         opt.value = selectedCellPhones[i];
         opt.innerHTML = selectedCellPhones[i];
         select.appendChild(opt);
