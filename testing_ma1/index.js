@@ -33,7 +33,8 @@ let phoneLines = 0;
 let selectedCellPhones = [];
 let nrOfSelectedCellPhones = [0, 0, 0, 0, 0];
 let sel;
-let text;
+let selectedLeftItemName;
+let selectedRightItemName;
 let indexChosenCellPhones;
 let buyFlag = false;
 let selectedItems = [];
@@ -43,20 +44,24 @@ function getTotalPrice () {
     document.getElementById("price").innerHTML = `Total price: ${totalPrice} DKK`;
 }
 
-function getSelectedItemName() {
+function getSelectedLeftItem() {
     sel = document.getElementById("cmbCellPhones");
     console.log("sel", sel);
-    text = sel.options[sel.selectedIndex].text;
-    console.log("text", text);
+    if (sel.options[sel.selectedIndex]) { //if an option is selected
+        selectedLeftItemName = sel.options[sel.selectedIndex].text;
+        console.log("selectedLeftItemName", selectedLeftItemName);
+    }
 }
 
-function getSelectedItemId() {
+function getSelectedRightItem() {
     sel = document.getElementById("txtChosenCellPhones");
     console.log("sel", sel);
-    text = sel.options[sel.selectedIndex].text;
-    indexChosenCellPhones = sel.selectedIndex;
-    console.log("text", text);
-    console.log("indexChosenCellPhones", indexChosenCellPhones);
+    if (sel.options[sel.selectedIndex]) { //if an option is selected
+        selectedRightItemName = sel.options[sel.selectedIndex].text;
+        indexChosenCellPhones = sel.selectedIndex;
+        console.log("selectedRightItemName", selectedRightItemName);
+        console.log("indexChosenCellPhones", indexChosenCellPhones);
+    }
 }
 
 function setBuyFlagFalse() {
@@ -131,6 +136,7 @@ document.getElementById("txtPhoneLines").addEventListener("input",  (e) => {
 
 document.getElementById("rightBtn").addEventListener("click", ()=> {
     console.log(" ------------ rightBtn ------------");
+    getSelectedLeftItem();
     console.log(sel.value);
     if(sel.value === "moto") {
         totalPrice = totalPrice + motorolaPrice;
@@ -163,11 +169,9 @@ document.getElementById("rightBtn").addEventListener("click", ()=> {
     }
     getTotalPrice();
     console.log("totalPrice: ", totalPrice);
-    console.log("text: ", text);
-
 
     console.log("selectedCellPhones-: ",  selectedCellPhones );
-    selectedCellPhones.push(text);
+    selectedCellPhones.push(selectedLeftItemName);
     console.log("selectedCellPhones+: ",  selectedCellPhones );
 
     let select = document.getElementById('txtChosenCellPhones');
@@ -186,6 +190,7 @@ document.getElementById("rightBtn").addEventListener("click", ()=> {
 
 document.getElementById("leftBtn").addEventListener("click", ()=> {
     console.log(" ------------ leftBtn ------------");
+    getSelectedRightItem();
     console.log(sel.value);
     if(totalPrice > 0) {
         if (sel.value === "moto") {
