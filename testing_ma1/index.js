@@ -31,7 +31,8 @@ let totalPrice = 0;
 let isInternetConnection = false;
 let phoneLines = 0;
 let selectedCellPhones = [];
-let nrOfSelectedCellPhones = [0, 0, 0, 0, 0];  // frequency array
+let receiptNames = ["Internet connection", "Phone lines", "Motorola G99", "iPhone 99", 'Samsung Galaxy 99', "Sony Xperia 99", "Huawei 99"];
+let receiptQuantity = [0, 0, 0, 0, 0, 0, 0];  // frequency array
 let sel;
 let selectedLeftItemName;
 let selectedRightItemName;
@@ -71,22 +72,24 @@ function getSelectedRightItem() { // get the name of the selected option from th
 
 function alertMessage() {
     let message = '';
-    for (i = 0; i < selectedItems.length; i++){
-        if (i == 0) {
-            message = selectedItems[i];
-        } else {
-            message = message + ', ' + selectedItems[i];
+    for (let i = 0; i < 7; i++){
+        if (receiptQuantity[i] > 0) {
+            message = message + ' ' + receiptQuantity[i] + 'x ' + receiptNames[i] + '\n';
         }
     }
-    message
-    console.log("nrOfSelectedCellPhones: ", nrOfSelectedCellPhones);
-    return message;
+
+    if (message !== '') {
+        return 'You have selected: \n' + message;
+    } else {
+        return "Nothing is selected! Please select something";
+    }
 }
 
 document.getElementById("chkInternetConnection").addEventListener("click", () => {
     if (isInternetConnection) {
         isInternetConnection = false;
         totalPrice = totalPrice - internetConnectionPrice;
+        receiptQuantity[0] = 0; // isInternetConnection is set to 0 for the receipt
         // searching through the selected items array and removing the internet connection
         for(let i = 0; i < selectedItems.length; i ++) {
             if (selectedItems[i] === document.getElementById("internetConnection").textContent) {
@@ -97,6 +100,7 @@ document.getElementById("chkInternetConnection").addEventListener("click", () =>
     } else {
         isInternetConnection = true;
         totalPrice = totalPrice + internetConnectionPrice;
+        receiptQuantity[0] = 1; // isInternetConnection is set to 1 for the receipt
         // adding the internet connection text from HMTL to the selected items array
         selectedItems.push(document.getElementById("internetConnection").textContent);
     }
@@ -106,6 +110,7 @@ document.getElementById("chkInternetConnection").addEventListener("click", () =>
 });
 
 document.getElementById("txtPhoneLines").addEventListener("input",  (e) => {
+
     // reset the number of phone lines in the selected items array
     for(let i = 0; i < selectedItems.length; i ++ ) {
         if(selectedItems[i].indexOf("Phone line") !== -1) {
@@ -126,6 +131,7 @@ document.getElementById("txtPhoneLines").addEventListener("input",  (e) => {
     }
     console.log("Phone lines: ", e.target.value);
     phoneLines = e.target.value;
+    receiptQuantity[1] = phoneLines; // set the phoneLines quantity for the receipt
     // calculate the new total price
     totalPrice = totalPrice + phoneLines * phoneLinePrice;
     console.log("totalPrice: ", totalPrice);
@@ -174,24 +180,23 @@ document.getElementById("rightBtn").addEventListener("click", ()=> {
 
     if(selectedLeftItemName === "Motorola G99") {
         totalPrice = totalPrice + motorolaPrice;
-        nrOfSelectedCellPhones[0]++;
+        receiptQuantity[2]++;
     } else if(selectedLeftItemName === "iPhone 99") {
         totalPrice = totalPrice + iPhonePrice;
-        nrOfSelectedCellPhones[1]++;
+        receiptQuantity[3]++;
     } else if(selectedLeftItemName === "Samsung Galaxy 99") {
         totalPrice = totalPrice + samsungPrice;
-        nrOfSelectedCellPhones[2]++;
+        receiptQuantity[4]++;
     } else if(selectedLeftItemName === "Sony Xperia 99") {
         totalPrice = totalPrice + sonyPrice;
-        nrOfSelectedCellPhones[3]++;
+        receiptQuantity[5]++;
     } else if(selectedLeftItemName === "Huawei 99") {
         totalPrice = totalPrice + huaweiPrice;
-        nrOfSelectedCellPhones[4]++;
+        receiptQuantity[6]++;
     }
     getTotalPrice();
     console.log("totalPrice: ", totalPrice);
 
-    console.log("nrOfSelectedCellPhones: ", nrOfSelectedCellPhones);
 
 });
 
@@ -232,37 +237,27 @@ document.getElementById("leftBtn").addEventListener("click", ()=> {
     if(totalPrice > 0) {
         if (selectedRightItemName === "Motorola G99") {
             totalPrice = totalPrice - motorolaPrice;
-            nrOfSelectedCellPhones[0]--;
+            receiptQuantity[2]--;
         } else if (selectedRightItemName === "iPhone 99") {
             totalPrice = totalPrice - iPhonePrice;
-            nrOfSelectedCellPhones[1]--;
+            receiptQuantity[3]--;
         } else if (selectedRightItemName === "Samsung Galaxy 99") {
             totalPrice = totalPrice - samsungPrice;
-            nrOfSelectedCellPhones[2]--;
+            receiptQuantity[4]--;
         } else if (selectedRightItemName === "Sony Xperia 99") {
             totalPrice = totalPrice - sonyPrice;
-            nrOfSelectedCellPhones[3]--;
+            receiptQuantity[5]--;
         } else if (selectedRightItemName === "Huawei 99") {
             totalPrice = totalPrice - huaweiPrice;
-            nrOfSelectedCellPhones[4]--;
+            receiptQuantity[6]--;
         }
     }
 
     //TODO Buy button functionality
     getTotalPrice();
     console.log("totalPrice: ", totalPrice);
-    // for (let i = 0; i < nrOfSelectedCellPhones.length; i++){
-    //
-    // }
-    console.log("nrOfSelectedCellPhones: ", nrOfSelectedCellPhones);
-
 });
 
 document.getElementById("buyBtn").addEventListener("click",  () => {
-    if(selectedItems.length === 0) {
-        alert("Nothing is selected! Please select something");
-    } else {
-        alert("You have selected: " + alertMessage());
-
-    }
+    alert(alertMessage());
 });
