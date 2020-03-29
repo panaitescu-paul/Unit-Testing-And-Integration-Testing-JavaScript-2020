@@ -117,8 +117,8 @@ document.getElementById("txtPhoneLines").addEventListener("input",  (e) => {
     // calculate the new total price
     totalPrice = totalPrice + phoneLines * phoneLinePrice;
     console.log("totalPrice: ", totalPrice);
-    if(phoneLines != 0) {
-        if(phoneLines == 1) {
+    if(phoneLines !== 0) {
+        if(phoneLines === 1) {
             let str = (phoneLines + ' ' + document.getElementById("phoneLines").textContent);
             selectedItems.push(str.slice(0, -1));
         } else {
@@ -193,15 +193,15 @@ document.getElementById("leftBtn").addEventListener("click", ()=> {
     getSelectedRightItem();
     console.log(sel.value);
     if(totalPrice > 0) {
-        if (sel.value === "moto") {
+        if (sel.value === "Motorola G99") {
             totalPrice = totalPrice - motorolaPrice;
-        } else if (sel.value === "iphone") {
+        } else if (sel.value === "iPhone 99") {
             totalPrice = totalPrice - iPhonePrice;
-        } else if (sel.value === "samsung") {
+        } else if (sel.value === "Samsung Galaxy 99") {
             totalPrice = totalPrice - samsungPrice;
-        } else if (sel.value === "sony") {
+        } else if (sel.value === "Sony Xperia 99") {
             totalPrice = totalPrice - sonyPrice;
-        } else if (sel.value === "huawei") {
+        } else if (sel.value === "Huawei 99") {
             totalPrice = totalPrice - huaweiPrice;
         }
     }
