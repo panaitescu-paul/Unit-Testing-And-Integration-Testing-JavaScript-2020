@@ -33,6 +33,9 @@ let phoneLines = 0;
 let selectedCellPhones = [];
 let sel;
 let text;
+let selChosenCellPhones;
+let textChosenCellPhones;
+let indexChosenCellPhones;
 let buyFlag = false;
 let selectedItems = [];
 
@@ -45,6 +48,15 @@ function val() {
     //console.log(sel);
     text = sel.options[sel.selectedIndex].text;
     //console.log(text);
+}
+
+function valChosenCellPhones() {
+    selChosenCellPhones = document.getElementById("txtChosenCellPhones");
+    console.log(selChosenCellPhones);
+    textChosenCellPhones = sel.options[sel.selectedIndex].text;
+    indexChosenCellPhones = sel.selectedIndex;
+    console.log(textChosenCellPhones);
+    console.log(indexChosenCellPhones);
 }
 
 function setBuyFlagFalse() {
@@ -145,6 +157,7 @@ document.getElementById("rightBtn").addEventListener("click", ()=> {
     }
     getTotalPrice();
     console.log("totalPrice: ", totalPrice);
+    console.log("text: ", text);
 
     selectedCellPhones.push(text);
     console.log("selectedCellPhones: ",  selectedCellPhones );
@@ -179,6 +192,26 @@ document.getElementById("leftBtn").addEventListener("click", ()=> {
     }
     getTotalPrice();
     console.log("totalPrice: ", totalPrice);
+
+    if (indexChosenCellPhones > -1) {
+        selectedCellPhones.splice(indexChosenCellPhones, 1);
+    }
+
+    console.log("selectedCellPhones: ",  selectedCellPhones );
+    console.log("indexChosenCellPhones: ",  indexChosenCellPhones );
+
+    let select = document.getElementById('txtChosenCellPhones');
+
+    for (let i=0; i < select.length; i++) { // clean the Option elements from HTML
+        if (select.options[i].value)
+            select.remove(i);
+    }
+    for (let i = 0; i < selectedCellPhones.length; i++){ // insert the Option elements in HTML
+        let opt = document.createElement('option');
+        opt.value = selectedCellPhones[i];
+        opt.innerHTML = selectedCellPhones[i];
+        select.appendChild(opt);
+    }
 });
 
 document.getElementById("buyBtn").addEventListener("click",  () => {
