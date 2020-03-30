@@ -21,16 +21,26 @@ class Purchase {
     addPhoneLines() {
         const phoneLinePrice = 150;
 
-        this.phoneLines++;
-        this.totalPrice += phoneLinePrice;
+        if(this.phoneLines <= 8) {
+            this.phoneLines++;
+            this.totalPrice += phoneLinePrice;
+        } else {
+            throw new Error('The maximum number of phone lines that can be hired is 8.');
+        }
+
         return this.totalPrice;
     }
 
     removePhoneLines() {
         const phoneLinePrice = 150;
 
-        this.phoneLines--;
-        this.totalPrice -= phoneLinePrice;
+        if(this.phoneLines >= 0) {
+            this.phoneLines--;
+            this.totalPrice -= phoneLinePrice;
+        } else {
+            throw new Error('The minimum number of phone lines that can be hired is 0.');
+        }
+
         return this.totalPrice;
     }
 
@@ -41,10 +51,16 @@ class Purchase {
         if (typeof modelName !== 'string') {
             throw new Error('modelName must be a string.');
         }
-        this.selectedCellPhones.push(modelName);
+
+        if(!cellPhoneNames.includes(modelName)) {
+            throw new Error('The modal name must be one of the 5 available modals!');
+        }
+
         for (let i = 0; i < cellPhoneNames.length; i ++) {
-            if (modelName === cellPhoneNames[i])
+            if (modelName === cellPhoneNames[i]) {
+                this.selectedCellPhones.push(modelName);
                 this.totalPrice += cellPhonePrices[i];
+            }
         }
         return this.totalPrice;
     }
@@ -68,11 +84,20 @@ class Purchase {
     }
 
     showBuyingReceipt() {
-        if (this.totalPrice !== 0)
-            return  'Internet Connection: ' + this.isInternetConnection + '\n' +
-                'Number of Phone Lines: ' + this.phoneLines + '\n' +
-                'Cell Phones: ' + this.selectedCellPhones + '\n' +
-                'Total Price: ' + this.totalPrice + '\n';
+        let receiptMessage = "";
+        if (this.isInternetConnection) {
+            receiptMessage += 'Internet Connection: ' + this.isInternetConnection + '\n';
+        }
+        if (this.phoneLines > 0) {
+            receiptMessage += 'Number of Phone Lines: ' + this.phoneLines + '\n';
+        }
+        if (this.selectedCellPhones.length > 0) {
+            receiptMessage += 'Cell Phones: ' + this.selectedCellPhones + '\n';
+        }
+        if (this.totalPrice !== 0) {
+            receiptMessage += 'Total Price: ' + this.totalPrice + ' DKK';
+            return receiptMessage;
+        }
         return "Nothing is selected! Please select an item!";
     }
 
