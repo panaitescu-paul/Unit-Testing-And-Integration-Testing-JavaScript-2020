@@ -1,25 +1,3 @@
-// Have to discuss about how we would implement this structure
-// class Purchase {
-//
-//     constructor(totalPrice, isInternetConnection, phoneLines, selectedCellPhones) {
-//         this.totalPrice = totalPrice;
-//         this.isInternetConnection = isInternetConnection;
-//         this.phoneLines = phoneLines;
-//         this.selectedCellPhones = selectedCellPhones;
-//     }
-//     get totalPrice() {
-//         return this._totalPrice;
-//     }
-//
-//     set totalPrice(value) {
-//         if (typeof value !== 'number') {
-//             throw new Error('Total price must be a number.');
-//         }
-//
-//         this._totalPrice = value;
-//     }
-//
-// }
 const internetConnectionPrice = 200;
 const phoneLinePrice = 150;
 const motorolaPrice = 800;
@@ -39,6 +17,56 @@ let selectedRightItemName;
 let indexChosenCellPhones;
 let selectedItems = [];
 let opt;
+class Purchase {
+    constructor(totalPrice, isInternetConnection, phoneLines, selectedCellPhones) {
+        this.totalPrice = totalPrice;
+        this.isInternetConnection = isInternetConnection;
+        this.phoneLines = phoneLines;
+        this.selectedCellPhones = selectedCellPhones;
+    }
+    get totalPrice() {
+        return this._totalPrice;
+    }
+
+    set totalPrice(value) {
+        if (typeof value !== 'number') {
+            throw new Error('Total price must be a number.');
+        }
+
+        this._totalPrice = value;
+    }
+
+    internetConnection() {
+        document.getElementById("chkInternetConnection").addEventListener("click", () => {
+            if (isInternetConnection) {
+                isInternetConnection = false;
+                totalPrice = totalPrice - internetConnectionPrice;
+                receiptQuantity[0] = 0; // isInternetConnection is set to 0 for the receipt
+                // searching through the selected items array and removing the internet connection
+                for(let i = 0; i < selectedItems.length; i ++) {
+                    if (selectedItems[i] === document.getElementById("internetConnection").textContent) {
+                        selectedItems.splice(i, 1);
+                        break;
+                    }
+                }
+            } else {
+                isInternetConnection = true;
+                totalPrice = totalPrice + internetConnectionPrice;
+                receiptQuantity[0] = 1; // isInternetConnection is set to 1 for the receipt
+                // adding the internet connection text from HMTL to the selected items array
+                selectedItems.push(document.getElementById("internetConnection").textContent);
+            }
+            console.log("isInternetConnection: ", isInternetConnection);
+            console.log("totalPrice: ", totalPrice);
+            getTotalPrice();
+        });
+    }
+
+    addPhoneLines() {
+
+    }
+
+}
 
 function getTotalPrice () {
     document.getElementById("price").innerHTML = `Total price: ${totalPrice} DKK`;
@@ -77,6 +105,7 @@ function alertMessage() {
             message = message + ' ' + receiptQuantity[i] + 'x ' + receiptNames[i] + '\n';
         }
     }
+    message = message + 'Total price: ' + totalPrice + '\n';
 
     if (message !== '') {
         return 'You have selected: \n' + message;
@@ -233,7 +262,7 @@ document.getElementById("leftBtn").addEventListener("click", ()=> {
 
     }
 
-    console.log(sel.value);
+    console.log("sel.value: ", sel.value);
     if(totalPrice > 0) {
         if (selectedRightItemName === "Motorola G99") {
             totalPrice = totalPrice - motorolaPrice;
