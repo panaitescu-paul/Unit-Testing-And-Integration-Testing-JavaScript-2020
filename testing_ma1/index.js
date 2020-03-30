@@ -25,7 +25,7 @@ class Purchase {
         this.selectedCellPhones = selectedCellPhones;
     }
     get totalPrice() {
-        return this._totalPrice;
+        return this.totalPrice;
     }
 
     set totalPrice(value) {
@@ -33,33 +33,17 @@ class Purchase {
             throw new Error('Total price must be a number.');
         }
 
-        this._totalPrice = value;
+        this.totalPrice += value;
     }
 
-    internetConnection() {
-        document.getElementById("chkInternetConnection").addEventListener("click", () => {
-            if (isInternetConnection) {
-                isInternetConnection = false;
-                totalPrice = totalPrice - internetConnectionPrice;
-                receiptQuantity[0] = 0; // isInternetConnection is set to 0 for the receipt
-                // searching through the selected items array and removing the internet connection
-                for(let i = 0; i < selectedItems.length; i ++) {
-                    if (selectedItems[i] === document.getElementById("internetConnection").textContent) {
-                        selectedItems.splice(i, 1);
-                        break;
-                    }
-                }
-            } else {
-                isInternetConnection = true;
-                totalPrice = totalPrice + internetConnectionPrice;
-                receiptQuantity[0] = 1; // isInternetConnection is set to 1 for the receipt
-                // adding the internet connection text from HMTL to the selected items array
-                selectedItems.push(document.getElementById("internetConnection").textContent);
-            }
-            console.log("isInternetConnection: ", isInternetConnection);
-            console.log("totalPrice: ", totalPrice);
-            getTotalPrice();
-        });
+    internetConnection(isInternetConnectionChecked) {
+        if (typeof isInternetConnectionChecked !== 'boolean') {
+            throw new Error('isInternetConnectionChecked must be a boolean.');
+        }
+        this.isInternetConnection = isInternetConnectionChecked; // assign value to class attribute
+        if (this.isInternetConnection)
+            this.totalPrice += internetConnectionPrice;
+        return this.totalPrice;
     }
 
     addPhoneLines() {
