@@ -57,7 +57,7 @@ function alertMessage() {
     }
     message = message + 'Total price: ' + totalPrice + '\n';
 
-    if (message !== '') {
+    if (totalPrice !== 0) {
         return 'You have selected: \n' + message;
     } else {
         return "Nothing is selected! Please select something";
