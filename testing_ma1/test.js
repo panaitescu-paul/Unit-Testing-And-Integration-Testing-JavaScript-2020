@@ -90,6 +90,23 @@ describe('Purchase', () => {
             purchase = new Purchase(0, false, 0, []);
         });
 
+        describe('Check the buying functionality return type', () => {
+            it('should be a string if there is nothing selected', () => {
+                assert.isString(purchase.showBuyingReceipt());
+            });
+            it('should be a string if there is something selected', () => {
+                purchase.internetConnection(true);
+                purchase.addPhoneLines();
+                purchase.addPhoneLines();
+                purchase.removePhoneLines();
+                purchase.selectCellPhone('iPhone 99');
+                purchase.selectCellPhone('iPhone 99');
+                purchase.unselectCellPhone('iPhone 99');
+                purchase.selectCellPhone('Samsung Galaxy 99');
+                assert.isString(purchase.showBuyingReceipt());
+            });
+        });
+
         describe('Check if there is nothing selected', () => {
             it('should be equal with "Nothing is selected! Please select an item!"', () => {
                 purchase.showBuyingReceipt().should.equal("Nothing is selected! Please select an item!");

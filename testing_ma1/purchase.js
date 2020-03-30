@@ -72,10 +72,16 @@ class Purchase {
         if (typeof modelName !== 'string') {
             throw new Error('modelName must be a string.');
         }
+
+        if(!cellPhoneNames.includes(modelName)) {
+            throw new Error('The modal name must be one of the 5 available modals!');
+        }
+
         for (let i = 0; i < this.selectedCellPhones.length; i ++) {
             if (modelName === this.selectedCellPhones[i])
                 this.selectedCellPhones.splice(i, 1); // delete an element from array at index i
         }
+
         for (let i = 0; i < cellPhoneNames.length; i ++) {
             if (modelName === cellPhoneNames[i])
                 this.totalPrice -= cellPhonePrices[i];
