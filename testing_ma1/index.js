@@ -61,12 +61,28 @@ class Purchase {
         return this.totalPrice;
     }
 
-    unselectCellPhone() {
+    unselectCellPhone(modelName) {
+        if (typeof modelName !== 'string') {
+            throw new Error('modelName must be a string.');
+        }
+        for (let i = 0; i < this.selectedCellPhones.length; i ++) {
+            if (modelName === this.selectedCellPhones[i])
+                this.selectedCellPhones.splice(i, 1); // delete an element from array at index i
+        }
+        for (let i = 0; i < cellPhoneNames.length; i ++) {
+            if (modelName === cellPhoneNames[i])
+                this.totalPrice -= cellPhonePrices[i];
+        }
         return this.totalPrice;
     }
 
     showBuyingReceipt() {
-
+        if (this.totalPrice !== 0)
+            return  'Internet Connection: ' + this.isInternetConnection + '\n' +
+                    'Number of Phone Lines: ' + this.phoneLines + '\n' +
+                    'Cell Phones: ' + this.selectedCellPhones + '\n' +
+                    'Total Price: ' + this.totalPrice + '\n';
+        return "Nothing is selected! Please select an item!";
     }
 
 }
