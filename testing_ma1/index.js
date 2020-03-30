@@ -1,12 +1,12 @@
-const internetConnectionPrice = 200;
-const phoneLinePrice = 150;
-const motorolaPrice = 800;
-const iPhonePrice = 6000;
-const samsungPrice = 1000;
-const sonyPrice = 900;
-const huaweiPrice = 900;
-let cellPhoneNames = ["Motorola G99", "iPhone 99", 'Samsung Galaxy 99', "Sony Xperia 99", "Huawei 99"];
-let cellPhonePrices = [800, 6000, 1000, 900, 900];  // frequency array
+// const internetConnectionPrice = 200;
+// const phoneLinePrice = 150;
+// const motorolaPrice = 800;
+// const iPhonePrice = 6000;
+// const samsungPrice = 1000;
+// const sonyPrice = 900;
+// const huaweiPrice = 900;
+// const cellPhoneNames = ["Motorola G99", "iPhone 99", 'Samsung Galaxy 99', "Sony Xperia 99", "Huawei 99"];
+// const cellPhonePrices = [800, 6000, 1000, 900, 900];  // frequency array
 let totalPrice = 0;
 let isInternetConnection = false;
 let phoneLines = 0;
@@ -28,6 +28,8 @@ class Purchase {
     }
 
     internetConnection(isInternetConnectionChecked) {
+        const internetConnectionPrice = 200;
+
         if (typeof isInternetConnectionChecked !== 'boolean') {
             throw new Error('isInternetConnectionChecked must be a boolean.');
         }
@@ -38,18 +40,25 @@ class Purchase {
     }
 
     addPhoneLines() {
+        const phoneLinePrice = 150;
+
         this.phoneLines++;
         this.totalPrice += phoneLinePrice;
         return this.totalPrice;
     }
 
     removePhoneLines() {
+        const phoneLinePrice = 150;
+
         this.phoneLines--;
         this.totalPrice -= phoneLinePrice;
         return this.totalPrice;
     }
 
     selectCellPhone(modelName) {
+        const cellPhoneNames = ["Motorola G99", "iPhone 99", 'Samsung Galaxy 99', "Sony Xperia 99", "Huawei 99"];
+        const cellPhonePrices = [800, 6000, 1000, 900, 900];  // frequency array
+
         if (typeof modelName !== 'string') {
             throw new Error('modelName must be a string.');
         }
@@ -62,6 +71,9 @@ class Purchase {
     }
 
     unselectCellPhone(modelName) {
+        const cellPhoneNames = ["Motorola G99", "iPhone 99", 'Samsung Galaxy 99', "Sony Xperia 99", "Huawei 99"];
+        const cellPhonePrices = [800, 6000, 1000, 900, 900];  // frequency array
+
         if (typeof modelName !== 'string') {
             throw new Error('modelName must be a string.');
         }
