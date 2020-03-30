@@ -53,7 +53,7 @@ class Purchase {
         }
 
         if(!cellPhoneNames.includes(modelName)) {
-            throw new Error('The modal name must be one of the 5 available modals!');
+            throw new Error('The modal name must be one of the 5 available models!');
         }
 
         for (let i = 0; i < cellPhoneNames.length; i ++) {
@@ -74,7 +74,7 @@ class Purchase {
         }
 
         if(!cellPhoneNames.includes(modelName)) {
-            throw new Error('The modal name must be one of the 5 available modals!');
+            throw new Error('The model name must be one of the 5 available models!');
         }
 
         for (let i = 0; i < this.selectedCellPhones.length; i ++) {

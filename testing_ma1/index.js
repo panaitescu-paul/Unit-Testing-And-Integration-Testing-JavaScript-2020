@@ -15,7 +15,6 @@ let sel;
 let selectedLeftItemName;
 let selectedRightItemName;
 let indexChosenCellPhones;
-let selectedItems = [];
 let opt;
 
 function getTotalPrice () {
@@ -56,7 +55,6 @@ function alertMessage() {
         }
     }
     message = message + 'Total price: ' + totalPrice + '\n';
-
     if (totalPrice !== 0) {
         return 'You have selected: \n' + message;
     } else {
@@ -69,19 +67,10 @@ document.getElementById("chkInternetConnection").addEventListener("click", () =>
         isInternetConnection = false;
         totalPrice = totalPrice - internetConnectionPrice;
         receiptQuantity[0] = 0; // isInternetConnection is set to 0 for the receipt
-        // searching through the selected items array and removing the internet connection
-        for(let i = 0; i < selectedItems.length; i ++) {
-            if (selectedItems[i] === document.getElementById("internetConnection").textContent) {
-                selectedItems.splice(i, 1);
-                break;
-            }
-        }
     } else {
         isInternetConnection = true;
         totalPrice = totalPrice + internetConnectionPrice;
         receiptQuantity[0] = 1; // isInternetConnection is set to 1 for the receipt
-        // adding the internet connection text from HMTL to the selected items array
-        selectedItems.push(document.getElementById("internetConnection").textContent);
     }
     console.log("isInternetConnection: ", isInternetConnection);
     console.log("totalPrice: ", totalPrice);
@@ -89,14 +78,6 @@ document.getElementById("chkInternetConnection").addEventListener("click", () =>
 });
 
 document.getElementById("txtPhoneLines").addEventListener("input",  (e) => {
-
-    // reset the number of phone lines in the selected items array
-    for(let i = 0; i < selectedItems.length; i ++ ) {
-        if(selectedItems[i].indexOf("Phone line") !== -1) {
-            selectedItems.splice(i, 1);
-            break;
-        }
-    }
     // reset the total price to 0
     totalPrice = totalPrice - phoneLines * phoneLinePrice;
     // regex for digits between 0 and 8
@@ -114,21 +95,6 @@ document.getElementById("txtPhoneLines").addEventListener("input",  (e) => {
     // calculate the new total price
     totalPrice = totalPrice + phoneLines * phoneLinePrice;
     console.log("totalPrice: ", totalPrice);
-    if(parseInt(phoneLines) !== 0) {
-        if(parseInt(phoneLines) === 1) {
-            let str = (phoneLines + ' ' + document.getElementById("phoneLines").textContent);
-            // delete the last character of the new str ('s' in this case)
-            selectedItems.push(str.slice(0, -1));
-        } else {
-            selectedItems.push(phoneLines + ' ' + document.getElementById("phoneLines").textContent);
-        }
-    } else {
-        for(let i = 0; i < selectedItems.length; i ++ ) {
-            if(selectedItems[i].indexOf("Phone line") !== -1) {
-                selectedItems.splice(i, 1);
-            }
-        }
-    }
     getTotalPrice();
 });
 
