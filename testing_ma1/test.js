@@ -1,5 +1,5 @@
 // Order of execution:
-// cd testing_ma1
+// cd testing_ma1 / dir testing_ma1
 // npm i
 // npm test
 let mocha = require('mocha');
