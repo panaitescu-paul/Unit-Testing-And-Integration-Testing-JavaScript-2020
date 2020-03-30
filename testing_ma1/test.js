@@ -1,3 +1,6 @@
+// cd testing_ma1/
+// npm i
+// --
 // First run npm install
 // Run tests: npm test
 let mocha = require('mocha');
@@ -8,7 +11,7 @@ let assert = require('chai').assert;
 
 chai.should();
 
-let Purchase = require("../testing_ma1/index");
+let Purchase = require("../testing_ma1/purchase");
 
 describe('Purchase', () => {
     describe('Including/Excluding the internet connection', () => {
@@ -27,7 +30,6 @@ describe('Purchase', () => {
             it('should total price be 200', () => {
                 purchase.internetConnection(true);
                 purchase.totalPrice.should.equal(200);
-                purchase.totalPrice.should.not.equal(199);
 
             });
 
