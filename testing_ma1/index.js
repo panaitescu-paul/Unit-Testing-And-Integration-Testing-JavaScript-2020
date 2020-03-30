@@ -5,6 +5,8 @@ const iPhonePrice = 6000;
 const samsungPrice = 1000;
 const sonyPrice = 900;
 const huaweiPrice = 900;
+let cellPhoneNames = ["Motorola G99", "iPhone 99", 'Samsung Galaxy 99', "Sony Xperia 99", "Huawei 99"];
+let cellPhonePrices = [800, 6000, 1000, 900, 900];  // frequency array
 let totalPrice = 0;
 let isInternetConnection = false;
 let phoneLines = 0;
@@ -24,17 +26,6 @@ class Purchase {
         this.phoneLines = phoneLines;
         this.selectedCellPhones = selectedCellPhones;
     }
-    get totalPrice() {
-        return this.totalPrice;
-    }
-
-    set totalPrice(value) {
-        if (typeof value !== 'number') {
-            throw new Error('Total price must be a number.');
-        }
-
-        this.totalPrice += value;
-    }
 
     internetConnection(isInternetConnectionChecked) {
         if (typeof isInternetConnectionChecked !== 'boolean') {
@@ -47,6 +38,34 @@ class Purchase {
     }
 
     addPhoneLines() {
+        this.phoneLines++;
+        this.totalPrice += phoneLinePrice;
+        return this.totalPrice;
+    }
+
+    removePhoneLines() {
+        this.phoneLines--;
+        this.totalPrice -= phoneLinePrice;
+        return this.totalPrice;
+    }
+
+    selectCellPhone(modelName) {
+        if (typeof modelName !== 'string') {
+            throw new Error('modelName must be a string.');
+        }
+        this.selectedCellPhones.push(modelName);
+        for (let i = 0; i < cellPhoneNames.length; i ++) {
+            if (modelName === cellPhoneNames[i])
+                this.totalPrice += cellPhonePrices[i];
+        }
+        return this.totalPrice;
+    }
+
+    unselectCellPhone() {
+        return this.totalPrice;
+    }
+
+    showBuyingReceipt() {
 
     }
 
