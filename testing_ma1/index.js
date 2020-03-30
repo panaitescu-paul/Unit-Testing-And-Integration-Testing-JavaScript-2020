@@ -52,7 +52,7 @@ function alertMessage() {
     let message = '';
     for (let i = 0; i < receiptQuantity.length; i++){
         if (receiptQuantity[i] > 0) {
-            message = message + ' ' + receiptQuantity[i] + 'x ' + receiptNames[i] + '\n';
+            message = message + ' \u2022 ' + receiptQuantity[i] + 'x ' + receiptNames[i] + '\n';
         }
     }
     message = message + 'Total price: ' + totalPrice + '\n';
