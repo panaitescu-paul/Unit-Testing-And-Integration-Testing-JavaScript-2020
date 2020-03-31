@@ -143,7 +143,7 @@ describe('Purchase', () => {
                     purchase.phoneLines = dataProvider[i];
                     purchase.totalPrice = dataProvider[i] * 150;
                     purchase.addPhoneLines();
-                    purchase.totalPrice.should.equal((dataProvider[i] + 1 ) *150);
+                    purchase.totalPrice.should.equal((dataProvider[i] + 1) *150);
                 }
             });
             it('after 1 addition, total price should not be equal to the one before', () => {
