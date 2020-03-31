@@ -85,6 +85,124 @@ describe('Purchase', () => {
             });
         });
     });
+    describe('Phone lines functionality', () => {
+        let purchase;
+
+        beforeEach(() => {
+            purchase = new Purchase(0, false, 0, []);
+        });
+
+        describe('Should only accept integers when adding', () => {
+            it('should not accept floats', () => {
+                purchase.phoneLines = 2.3;
+                expect(() => purchase.addPhoneLines()).to.throw('phoneLines must be an integer between 0 and 8.');
+            });
+            it('should not accept strings', () => {
+                purchase.phoneLines = "myString"
+                expect(() => purchase.addPhoneLines()).to.throw('phoneLines must be an integer between 0 and 8.');
+            });
+        });
+
+        describe('Should only accept integers when removing', () => {
+            it('should not accept floats', () => {
+                purchase.phoneLines = 7.6;
+                expect(() => purchase.removePhoneLines()).to.throw('phoneLines must be an integer between 0 and 8.');
+            });
+            it('should not accept strings', () => {
+                purchase.phoneLines = "testString"
+                expect(() => purchase.removePhoneLines()).to.throw('phoneLines must be an integer between 0 and 8.');
+            });
+        });
+
+        describe('Should only accept valid partitions of integers when adding', () => {
+            it('should not accept negatives', () => {
+                purchase.phoneLines = -1;
+                expect(() => purchase.addPhoneLines()).to.throw('The minimum number of phone lines that can be hired is 0.');
+            });
+            it('should not accept values above 7', () => {
+                purchase.phoneLines = 8;
+                expect(() => purchase.addPhoneLines()).to.throw('The maximum number of phone lines that can be hired is 8.');
+            })
+        });
+
+        describe('Should only accept valid partitions of integers when removing', () => {
+            it('should not accept negatives', () => {
+                purchase.phoneLines = 0;
+                expect(() => purchase.removePhoneLines()).to.throw('The minimum number of phone lines that can be hired is 0.');
+            });
+            it('should not accept values above 8', () => {
+                purchase.phoneLines = 9;
+                expect(() => purchase.removePhoneLines()).to.throw('The maximum number of phone lines that can be hired is 8.');
+            })
+        });
+
+        describe('Should check if phone lines are included', () => {
+            let dataProvider = [0,1,4,7];
+            it('should calculate the total price after 1 addition', () => {
+                for (let i = 0; i < dataProvider.length; i ++) {
+                    purchase.phoneLines = dataProvider[i];
+                    purchase.totalPrice = dataProvider[i] * 150;
+                    purchase.addPhoneLines();
+                    purchase.totalPrice.should.equal((dataProvider[i] + 1 ) *150);
+                }
+            });
+            it('after 1 addition, total price should not be equal to the one before', () => {
+                for (let i = 0; i < dataProvider.length; i ++) {
+                    purchase.phoneLines = dataProvider[i];
+                    purchase.addPhoneLines();
+                    purchase.totalPrice.should.not.equal(dataProvider[i] * 150);
+                }
+            });
+            it('phone lines should increase with 1', () => {
+                for (let i = 0; i < dataProvider.length; i ++) {
+                    purchase.phoneLines = dataProvider[i];
+                    purchase.addPhoneLines();
+                    purchase.phoneLines.should.equal(dataProvider[i] + 1);
+                }
+            });
+            it('after 1 addition, nr of phone lines should not be equal to the ones before', () => {
+                for (let i = 0; i < dataProvider.length; i ++) {
+                    purchase.phoneLines = dataProvider[i];
+                    purchase.addPhoneLines();
+                    purchase.phoneLines.should.not.equal(dataProvider[i]);
+                }
+            });
+        });
+
+        describe('Should check if phone lines are excluded', () => {
+            let dataProvider = [1,4,7,8];
+            it('should calculate the total price after 1 deletion', () => {
+                for (let i = 0; i < dataProvider.length; i ++) {
+                    purchase.phoneLines = dataProvider[i];
+                    purchase.totalPrice = dataProvider[i] * 150;
+                    purchase.removePhoneLines();
+                    purchase.totalPrice.should.equal((dataProvider[i] - 1) * 150);
+                }
+            });
+            it('after 1 deletion, total price should not be equal to the one before', () => {
+                for (let i = 0; i < dataProvider.length; i ++) {
+                    purchase.phoneLines = dataProvider[i];
+                    purchase.removePhoneLines();
+                    purchase.totalPrice.should.not.equal(dataProvider[i] * 150);
+                }
+            });
+            it('phone lines should decrease with 1', () => {
+                for (let i = 0; i < dataProvider.length; i ++) {
+                    purchase.phoneLines = dataProvider[i];
+                    purchase.removePhoneLines();
+                    purchase.phoneLines.should.equal(dataProvider[i] - 1);
+                }
+            });
+            it('after 1 deletion, nr of phone lines should not be equal to the one before', () => {
+                for (let i = 0; i < dataProvider.length; i ++) {
+                    purchase.phoneLines = dataProvider[i];
+                    purchase.removePhoneLines();
+                    purchase.phoneLines.should.not.equal(dataProvider[i]);
+                }
+            });
+        });
+
+    });
     describe('Buying functionality', () => {
         let purchase;
 

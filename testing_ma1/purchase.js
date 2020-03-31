@@ -23,27 +23,41 @@ class Purchase {
 
     addPhoneLines() {
         const phoneLinePrice = 150;
-
-        if(this.phoneLines <= 8) {
+        // non numerical and decimal numbers
+        if (typeof this.phoneLines !== 'number' || !Number.isInteger(this.phoneLines)) {
+            throw new Error('phoneLines must be an integer between 0 and 8.');
+        }
+        if (this.phoneLines < 0) {
+            throw new Error('The minimum number of phone lines that can be hired is 0.');
+        }
+        // covers cases between 0 and 7
+        if(this.phoneLines < 8) {
             this.phoneLines++;
             this.totalPrice += phoneLinePrice;
         } else {
+            // > 8
             throw new Error('The maximum number of phone lines that can be hired is 8.');
         }
-
         return this.totalPrice;
     }
 
     removePhoneLines() {
         const phoneLinePrice = 150;
-
-        if(this.phoneLines >= 0) {
+        // non numerical and decimal numbers
+        if (typeof this.phoneLines !== 'number' || !Number.isInteger(this.phoneLines)) {
+            throw new Error('phoneLines must be an integer between 0 and 8.');
+        }
+        if (this.phoneLines > 8) {
+            throw new Error('The maximum number of phone lines that can be hired is 8.');
+        }
+        // covers cases between 0 and 8
+        if(this.phoneLines > 0) {
             this.phoneLines--;
             this.totalPrice -= phoneLinePrice;
         } else {
+            // < 0
             throw new Error('The minimum number of phone lines that can be hired is 0.');
         }
-
         return this.totalPrice;
     }
 
