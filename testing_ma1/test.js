@@ -2,7 +2,7 @@
 // ls / dir 
 // cd testing_ma1
 // npm i
-// npm test
+// to run just the tests: npm test
 // to test code coverage: npm run coverage
 let mocha = require('mocha');
 let chai = require('chai');
