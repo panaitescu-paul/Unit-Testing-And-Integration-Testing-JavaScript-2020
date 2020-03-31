@@ -3,6 +3,7 @@
 // cd testing_ma1
 // npm i
 // npm test
+// to test code coverage: npm run coverage
 let mocha = require('mocha');
 let chai = require('chai');
 let describe = mocha.describe;
