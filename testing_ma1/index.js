@@ -49,6 +49,13 @@ function getSelectedRightItem() { // get the name of the selected option from th
 
 function alertMessage() {
     let message = '';
+
+    if(receiptQuantity[1] === 1) {
+        receiptNames[1] = "Phone line";
+    } else if(receiptQuantity[1] > 1) {
+        receiptNames[1] = "Phone lines"
+    }
+
     for (let i = 0; i < receiptQuantity.length; i++){
         if (receiptQuantity[i] > 0) {
             message = message + ' \u2022 ' + receiptQuantity[i] + 'x ' + receiptNames[i] + '\n';
@@ -82,7 +89,6 @@ document.getElementById("txtPhoneLines").addEventListener("input",  (e) => {
     totalPrice = totalPrice - phoneLines * phoneLinePrice;
     // regex for digits between 0 and 8
     const numbers = /^[0-9]+$/;
-    // TODO add a second comment to include the else if case (higher than 8 and input field reset to 8)
     // if the input field is less than 0, is not a number or the length is higher than 1, then the input field is reset to 0
     if(e.target.value < 0 || !e.target.value.match(numbers)) {
         e.target.value = 0;
@@ -91,7 +97,7 @@ document.getElementById("txtPhoneLines").addEventListener("input",  (e) => {
     }
     console.log("Phone lines: ", e.target.value);
     phoneLines = e.target.value;
-    receiptQuantity[1] = phoneLines; // set the phoneLines quantity for the receipt
+    receiptQuantity[1] = Number(phoneLines); // set the phoneLines quantity for the receipt
     // calculate the new total price
     totalPrice = totalPrice + phoneLines * phoneLinePrice;
     console.log("totalPrice: ", totalPrice);
@@ -119,6 +125,7 @@ document.getElementById("rightBtn").addEventListener("click", ()=> {
             opt = document.createElement('option');
             opt.value = selectedCellPhones[i];
             opt.innerHTML = selectedCellPhones[i];
+            opt.selected = true;
             select.appendChild(opt);
         }
     }
@@ -154,14 +161,6 @@ document.getElementById("leftBtn").addEventListener("click", ()=> {
         console.log("indexChosenCellPhones: ",  indexChosenCellPhones );
         if (indexChosenCellPhones > -1) {
             selectedCellPhones.splice(indexChosenCellPhones, 1); // delete the selected element
-            //TODO: auto select the upper or lower element
-            // if (indexChosenCellPhones === selectedCellPhones.length - 1) { // Case 1: auto select the upper element
-            //     selectedCellPhones[indexChosenCellPhones-1].selected = true; // select the upper element
-            // } else if (indexChosenCellPhones === 0) { // Case 2: auto select the lower element
-            //     selectedCellPhones[indexChosenCellPhones+1].selected = true; // select the lower element
-            // }
-
-
         }
         console.log("selectedCellPhones-: ",  selectedCellPhones );
         console.log("indexChosenCellPhones: ",  indexChosenCellPhones );
@@ -173,9 +172,9 @@ document.getElementById("leftBtn").addEventListener("click", ()=> {
             opt = document.createElement('option');
             opt.value = selectedCellPhones[i];
             opt.innerHTML = selectedCellPhones[i];
+            opt.selected = true;
             select.appendChild(opt);
         }
-
     }
 
     console.log("sel.value: ", sel.value);
@@ -198,7 +197,6 @@ document.getElementById("leftBtn").addEventListener("click", ()=> {
         }
     }
 
-    //TODO Buy button functionality
     getTotalPrice();
     console.log("totalPrice: ", totalPrice);
 });
