@@ -13,8 +13,11 @@ class Purchase {
             throw new Error('isInternetConnectionChecked must be a boolean.');
         }
         this.isInternetConnection = isInternetConnectionChecked; // assign value to class attribute
-        if (this.isInternetConnection)
+        if (this.isInternetConnection) {
             this.totalPrice += internetConnectionPrice;
+        } else if (!this.isInternetConnection && this.totalPrice > 0) {
+            this.totalPrice -= internetConnectionPrice;
+        }
         return this.totalPrice;
     }
 
@@ -78,13 +81,17 @@ class Purchase {
         }
 
         for (let i = 0; i < this.selectedCellPhones.length; i ++) {
-            if (modelName === this.selectedCellPhones[i])
+            if (modelName === this.selectedCellPhones[i]) {
                 this.selectedCellPhones.splice(i, 1); // delete an element from array at index i
+                break;
+            }
         }
 
         for (let i = 0; i < cellPhoneNames.length; i ++) {
-            if (modelName === cellPhoneNames[i])
+            if (modelName === cellPhoneNames[i]) {
                 this.totalPrice -= cellPhonePrices[i];
+                break;
+            }
         }
         return this.totalPrice;
     }

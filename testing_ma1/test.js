@@ -134,6 +134,37 @@ describe('Purchase', () => {
                     'Total Price: ' + 6000 + ' DKK'
                 );
             });
+            it('should be equal with true internet connection, 2 phone lines and 500 DKK total price', () => {
+                purchase.internetConnection(true);
+                purchase.addPhoneLines();
+                purchase.addPhoneLines();
+                purchase.showBuyingReceipt().should.equal('Internet Connection: ' + true + '\n' +
+                    'Number of Phone Lines: ' + 2 + '\n' +
+                    'Total Price: ' + 500 + ' DKK'
+                );
+            });
+            it('should be equal with true internet connection, 1 iphone, 1 samsung and 7200 DKK total price', () => {
+                purchase.internetConnection(true);
+                purchase.selectCellPhone('iPhone 99');
+                purchase.selectCellPhone('Samsung Galaxy 99');
+                purchase.showBuyingReceipt().should.equal('Internet Connection: ' + true + '\n' +
+                    'Cell Phones: ' + 'iPhone 99,Samsung Galaxy 99' + '\n' +
+                    'Total Price: ' + 7200 + ' DKK'
+                );
+            });
+            it('should be equal with 4 phone lines, 1 motorola, 1 samsung, 1 huawei and 3300 DKK total price', () => {
+                purchase.addPhoneLines();
+                purchase.addPhoneLines();
+                purchase.addPhoneLines();
+                purchase.addPhoneLines();
+                purchase.selectCellPhone('Motorola G99');
+                purchase.selectCellPhone('Samsung Galaxy 99');
+                purchase.selectCellPhone('Huawei 99');
+                purchase.showBuyingReceipt().should.equal('Number of Phone Lines: ' + 4 + '\n' +
+                    'Cell Phones: ' + 'Motorola G99,Samsung Galaxy 99,Huawei 99' + '\n' +
+                    'Total Price: ' + 3300 + ' DKK'
+                );
+            });
             it('should be equal with true internet connection, one phone lines, one iPhone 99 cell phone and 6350 DKK total price', () => {
                 purchase.internetConnection(true);
                 purchase.addPhoneLines();
@@ -142,6 +173,34 @@ describe('Purchase', () => {
                     'Number of Phone Lines: ' + 1 + '\n' +
                     'Cell Phones: ' + 'iPhone 99' + '\n' +
                     'Total Price: ' + 6350 + ' DKK'
+                );
+            });
+            it('should be equal with true internet connection, 5 phone lines, 1 motorola, 1 iphone, 3 samsung, 1 sony, 1 huawei cell phones and 12550 DKK total price', () => {
+                purchase.internetConnection(true);
+                purchase.internetConnection(false);
+                purchase.internetConnection(true);
+                purchase.addPhoneLines();
+                purchase.removePhoneLines();
+                purchase.addPhoneLines();
+                purchase.addPhoneLines();
+                purchase.addPhoneLines();
+                purchase.addPhoneLines();
+                purchase.removePhoneLines();
+                purchase.addPhoneLines();
+                purchase.addPhoneLines();
+                purchase.selectCellPhone('Motorola G99');
+                purchase.selectCellPhone('iPhone 99');
+                purchase.selectCellPhone('Samsung Galaxy 99');
+                purchase.selectCellPhone('Sony Xperia 99');
+                purchase.selectCellPhone('Samsung Galaxy 99');
+                purchase.selectCellPhone('iPhone 99');
+                purchase.selectCellPhone('Huawei 99');
+                purchase.selectCellPhone('Samsung Galaxy 99');
+                purchase.unselectCellPhone('iPhone 99');
+                purchase.showBuyingReceipt().should.equal('Internet Connection: ' + true + '\n' +
+                    'Number of Phone Lines: ' + 5 + '\n' +
+                    'Cell Phones: ' + 'Motorola G99,Samsung Galaxy 99,Sony Xperia 99,Samsung Galaxy 99,iPhone 99,Huawei 99,Samsung Galaxy 99' + '\n' +
+                    'Total Price: ' + 12550 + ' DKK'
                 );
             });
         });
