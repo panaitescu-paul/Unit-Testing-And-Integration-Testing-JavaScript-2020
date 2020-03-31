@@ -104,7 +104,8 @@ class Purchase {
             receiptMessage += 'Total Price: ' + this.totalPrice + ' DKK';
             return receiptMessage;
         }
-        return "Nothing is selected! Please select an item!";
+        receiptMessage += "Nothing is selected! Please select an item!";
+        return receiptMessage;
     }
 
 }
