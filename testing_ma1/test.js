@@ -87,11 +87,12 @@ describe('Purchase', () => {
     });
     /*
         Equivalence partitioning
-        Valid partitions: 0-8
+        Valid partitions: 0
+                          1-8
         Invalid partitions: <0
                             >8
-                            non-numerical
-                            floats
+                            Non-numeric characters
+                            Real (decimal) numbers
 
         Boundary values
         Invalid lower boundary: -1
