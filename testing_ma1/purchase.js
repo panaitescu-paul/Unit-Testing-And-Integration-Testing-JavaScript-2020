@@ -62,7 +62,7 @@ class Purchase {
     }
 
     selectCellPhone(modelName) {
-        const cellPhoneNames = ["Motorola G99", "iPhone 99", 'Samsung Galaxy 99', "Sony Xperia 99", "Huawei 99"];
+        const cellPhoneNames = ["Motorola G99", "iPhone 99", "Samsung Galaxy 99", "Sony Xperia 99", "Huawei 99"];
         const cellPhonePrices = [800, 6000, 1000, 900, 900];  // frequency array
 
         if (typeof modelName !== 'string') {
@@ -83,7 +83,7 @@ class Purchase {
     }
 
     unselectCellPhone(modelName) {
-        const cellPhoneNames = ["Motorola G99", "iPhone 99", 'Samsung Galaxy 99', "Sony Xperia 99", "Huawei 99"];
+        const cellPhoneNames = ["Motorola G99", "iPhone 99", "Samsung Galaxy 99", "Sony Xperia 99", "Huawei 99"];
         const cellPhonePrices = [800, 6000, 1000, 900, 900];  // frequency array
 
         if (typeof modelName !== 'string') {

@@ -24,6 +24,7 @@ describe('Purchase', () => {
 
         describe('Check the internet connection data type', () => {
             it('should be a boolean', () => {
+                // purchase.internetConnection(true);
                 purchase.internetConnection(true);
                 assert.isBoolean(purchase.isInternetConnection);
             });
