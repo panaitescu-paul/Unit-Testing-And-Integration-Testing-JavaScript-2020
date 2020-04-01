@@ -85,6 +85,22 @@ describe('Purchase', () => {
             });
         });
     });
+    /*
+        Equivalence partitioning
+        Valid partitions: 0-8
+        Invalid partitions: <0
+                            >8
+                            non-numerical
+                            floats
+
+        Boundary values
+        Invalid lower boundary: -1
+        Valid lower boundary: 0,1
+        Valid upper boundary: 7,8
+        Invalid upper boundary: 9
+
+        Middle value: 4
+     */
     describe('Phone lines functionality', () => {
         let purchase;
 
