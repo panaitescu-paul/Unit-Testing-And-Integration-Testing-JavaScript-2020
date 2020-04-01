@@ -1,16 +1,10 @@
 pipeline {
   agent any
   stages {
-    stage('Stage 1') {
+    stage('Check files') {
       steps {
-        echo 'This Works!!!!!!!!!!'
-        echo 'First Job'
-        echo '2nd Job'
-      }
-    }
-
-    stage('Stage 2') {
-      steps {
+        sh 'cat testing_ma1/index.html'
+        sh 'cat testing_ma1/index.js'
         sh 'cat testing_ma1/test.js'
       }
     }
