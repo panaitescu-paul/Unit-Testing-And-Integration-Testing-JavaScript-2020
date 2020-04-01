@@ -1,7 +1,7 @@
 pipeline {
-  agent any
+  agent none
   stages {
-    stage('Tests 1') {
+    stage('Stage 1') {
       steps {
         echo 'This Works!!!!!!!!!!'
         echo 'First Job'
@@ -11,7 +11,7 @@ pipeline {
 
     stage('Stage 2') {
       steps {
-        echo 'Test 2'
+        sh 'cat testing_ma1/test.js'
       }
     }
 
